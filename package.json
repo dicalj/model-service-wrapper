@@ -1,0 +1,21 @@
+{
+  "name": "model-service-wrapper",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "repository": "https://github.com/dicalj/model-service-wrapper.git",
+  "author": "dicalj <dicaljs@gmail.cl>",
+  "license": "MIT",
+  "dependencies": {
+    "vue-api-query": "^1.5.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.0",
+    "@babel/core": "^7.10.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.10.0",
+    "babel-preset-minify": "^0.5.1"
+  },
+  "scripts": {
+    "build": "babel src -d dist"
+  }
+}
