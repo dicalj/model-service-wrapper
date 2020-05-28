@@ -6,30 +6,51 @@
 export default class Service {
 
   /**
-   * { function_description }
+   * Create and new object instance from the service prototype.
    *
-   * @return     {<type>}  { description_of_the_return_value }
+   * @return  {Object}  a new service instance.
    */
   static _create_from() {
     return Object.create(this._prototype())
   }
 
   /**
-   * { function_description }
+   * Returns the service prototype.
    *
-   * @return     {<type>}  { description_of_the_return_value }
+   * @return  {Object}  a prototype definition.
    */
   static _prototype() {
     return Object.getPrototypeOf(this)
   }
 
   /**
-   * Creates a new instance of the object with same properties than original.
+   * Creates a new instance of the service with same properties 
+   * than original.
    *
-   * @return     {<type>}  Copy of this object.
+   * @return  {Object}  Copy of this service.
    */
   static clone() {
     return Object.assign(this._create_from(), this)
+  }
+
+  /**
+   * Send a post request to create a active model record.
+   * 
+   * @param   {Object}  model - the active model record.
+   * @returns {Promise} the create request promise.
+   */
+  static create(model) {
+    return model.toCreate().save()
+  }
+
+  /**
+   * Send a delete request to remove a active model record.
+   * 
+   * @param   {Object}  model - the active model record.
+   * @returns {Promise} the remove request promise.
+   */
+  static delete(model) {
+    return model.delete()
   }
 
   /**
@@ -42,20 +63,47 @@ export default class Service {
   }
 
   /**
-   * Returns the model of the service.
+   * Fetches the given parameters.
    *
-   * @return {Object}  Model of service.
+   * @param   {Function}  [params={}] - The parameters.
+   * @return  {Promise}   { description_of_the_return_value }
    */
-  static fetch() {
-    return null
+  static fetch(params = {}) {
+    return Promise.resolve(params).then(this.parametrize).then(this.get)
   }
 
   /**
-   * Returns the model of the service.
+   * Get the given parameters.
    *
-   * @return {Object}  Model of service.
+   * @param   {Function}  [params={}] - The parameters.
+   * @return  {Promise}   { description_of_the_return_value }
    */
-  static parametrize() {
-    return null
+  static get(params = {}) {
+    return this.model().params(params).get()
+  }
+
+  /**
+   * Parametrize the params argument to model param get.
+   * 
+   * @param   {Object}  params - The params.
+   * @return  {Object}  model get params.
+   */
+  static parametrize (params = {}) {
+    return {
+      limit : params.limit, 
+      page  : params.page,
+      sort  : params.sort,
+      filter: params.filter,
+    }
+  }
+
+  /**
+   * Send a put request to update a active model record.
+   * 
+   * @param   {Object}  model - the active model record.
+   * @returns {Promise} the update request promise.
+   */
+  static update(model) {
+    return model.toUpdate().save()
   }
 }

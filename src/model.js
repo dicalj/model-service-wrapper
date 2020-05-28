@@ -11,7 +11,7 @@ export default class extends Model {
   /**
    * Create and new object instance from the model prototype.
    *
-   * @return  {Object}  a new object instance.
+   * @return  {Object}  a new model instance.
    */
   _create_from() {
     return Object.create(this._prototype())
@@ -27,9 +27,10 @@ export default class extends Model {
   }
 
   /**
-   * Creates a new instance of the object with same properties than original.
+   * Creates a new instance of the model with same properties than 
+   * original.
    *
-   * @return     {<type>}  Copy of this object.
+   * @return  {Object}  Copy of this model.
    */
   clone() {
     return Object.assign(this._create_from(), this)
