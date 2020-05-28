@@ -73,6 +73,13 @@ export default class Service {
   }
 
   /**
+   * { item_description }
+   */
+  static fetcher() {
+    return (params) => this.fetch(params)
+  }
+
+  /**
    * Get the given parameters.
    *
    * @param   {Function}  [params={}] - The parameters.
@@ -88,13 +95,22 @@ export default class Service {
    * @param   {Object}  params - The params.
    * @return  {Object}  model get params.
    */
-  static parametrize (params = {}) {
+  static parametrize(params = {}) {
     return {
-      limit : params.limit, 
-      page  : params.page,
-      sort  : params.sort,
-      filter: params.filter,
+      append  : params.append,
+      include : params.include,
+      limit   : params.limit, 
+      page    : params.page,
+      sort    : params.sort,
+      filter  : params.filter,
     }
+  }
+
+  /**
+   * Returns a simple fetcher with the current
+   */
+  static toList() {
+    return this.model().append().include().params(params).get()
   }
 
   /**

@@ -68,6 +68,13 @@ export default class extends Model {
   }
 
   /**
+   * { item_description }
+   */
+  static fetcher() {
+    return this.param().get
+  }
+
+  /**
    *
    */
   file (filename, fileExtend) {
