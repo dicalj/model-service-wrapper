@@ -1,26 +1,26 @@
-//
-import { Model as BaseModel } from 'vue-api-query'
+// required modules
+import { Model } from 'vue-api-query'
 
 /**
  * This class describes an api model.
  *
  * @class Model (name)
  */
-export default class Model extends BaseModel {
+export default class extends Model {
 
   /**
-   * { function_description }
+   * Create and new object instance from the model prototype.
    *
-   * @return     {<type>}  { description_of_the_return_value }
+   * @return  {Object}  a new object instance.
    */
   _create_from() {
     return Object.create(this._prototype())
   }
 
   /**
-   * { function_description }
+   * Returns the model prototype.
    *
-   * @return     {<type>}  { description_of_the_return_value }
+   * @return  {Object}  a prototype definition.
    */
   _prototype() {
     return Object.getPrototypeOf(this)
@@ -36,30 +36,34 @@ export default class Model extends BaseModel {
   }
 
   /**
+   * Send a get request with blob type.
    * 
-   * @param {*} path 
+   * @param   {Object}  [payload={url, data}] - the request payload.
+   * @returns {Promise} a request promise.
    */
-  excel(path = 'excel') {
+  blob({ url, data }) {
     return this.request({
-      responseType: 'blob',
-      method: 'GET',
-      url: this.fullURL()
-        .concat('/')
-        .concat(path),
+      requestType: 'blob',
+      method: 'get',
+      url,
+      data,
     })
   }
 
   /**
-   * Fetches the given parameters.
-   * @param      {<type>}   [params={}]  The parameters
-   * @return     {Promise}  { description_of_the_return_value }
+   * Send a get request with blob type to expected excel file.
+   * 
+   * @param   {String} path 
+   * @param   {Object} data 
+   * @returns {Promise} data 
    */
-  static async fetch(params = {}) {
-    return this
-      .params(params)
-      .get()
-      .then(this.parse)
-      .catch(this.prevent)
+  excel(path = 'excel', data = {}) {
+
+    // required data
+    const url = this.fullURL().concat(`/${ path }`)
+
+    // blob promise
+    return this.blob({ url, data })
   }
 
   /**
@@ -76,14 +80,6 @@ export default class Model extends BaseModel {
       fileLink.download = filename.concat('.').concat(fileExtend)
       fileLink.click()
     }
-  }
-
-  /**
-   * 
-   * @param {*} data 
-   */
-  from(data) {
-    Object.keys(data).forEach(this.setValue(data))
   }
 
   /**
@@ -142,34 +138,6 @@ export default class Model extends BaseModel {
   }
 
   /**
-   * Cast params of fetch functions
-   * @param      {<type>}   params  The parameters
-   * @return     {Promise}  { description_of_the_return_value }
-   */
-  static parametrize(params) {
-    return params
-  }
-
-  /**
-   * Parse the response fetch data.
-   * @param      {<type>}  res     The resource
-   * @return     {Object}  { description_of_the_return_value }
-   */
-  static parse(res) {
-    return res
-  }
-
-  /**
-   * Get prevent data for error fetch
-   * @return     {Object}  { description_of_the_return_value }
-   */
-  static prevent() {
-    return {
-      data: []
-    }
-  }
-
-  /**
    * { function_description }
    * @return     {<type>}  { description_of_the_return_value }
    */
@@ -182,7 +150,6 @@ export default class Model extends BaseModel {
   }
 
   /**
-   * @description
    * { function_description }
    *
    * @param      {string}  [path='pdf']  The path
@@ -204,10 +171,10 @@ export default class Model extends BaseModel {
   }
 
   /**
-   * { function_description }
+   * Reduces to the specific array of properties.
    *
-   * @param      {<type>}    [properties=[]]  The properties
-   * @return     {Function}  { description_of_the_return_value }
+   * @param   {Array}   [properties=[]]  The properties
+   * @return  {Object}  { description_of_the_return_value }
    */
   reduce(...properties) {
 
@@ -229,7 +196,6 @@ export default class Model extends BaseModel {
    *
    * @param      {<type>}  parent    The parent
    * @param      {<type>}  property  The property
-   * @param      {<type>}  index     The index
    * @return     {<type>}  { description_of_the_return_value }
    */
   reduceHasProperty(parent, property) {
@@ -263,21 +229,45 @@ export default class Model extends BaseModel {
   /**
    * Returns a create representation of the object.
    *
-   * @return     {<type>}  Create representation of the object.
+   * @returns {Object}  Create representation of the object.
    */
   toCreate() {
-    return this.reduce()
+    return this.reduce([])
   }
 
   /**
+   * Returns a Object representation of the model.
    * 
+   * @returns {Object} a Object instance.
    */
   toData() {
     return JSON.parse(this.toJSONData())
-  }  
+  }
 
   /**
+   * Return a FormData with specific properties.
    * 
+   * @param   {String}    properties - properties names.
+   * @returns {FormData}  a FormData representation .
+   */
+  toFormData(...props) {
+
+    // the formData
+    var formData = new FormData()
+
+    // append in formData the properties
+    props.forEach(prop => {
+      formData.append(prop, this.getProperty(prop))
+    })
+
+    // return the formData appended with the properties
+    return formData
+  }
+
+  /**
+   * Returns a JSON representation of the model.
+   * 
+   * @returns {String} a JSON text.
    */
   toJSONData() {
     return JSON.stringify({ ...this })
@@ -285,15 +275,17 @@ export default class Model extends BaseModel {
 
   /**
    * Returns a create representation of the object.
-   * @return {<type>} Create representation of the object.
+   * 
+   * @returns {Object} Create representation of the object.
    */
   toUpdate() {
-    return this.reduce()
+    return this.reduce([])
   }
 
   /**
    * Send a post multipart form data request to the current url resource
-   * @param {Object} params - the request data
+   * 
+   * @param   {Object}  params - the request data
    * @returns {Promise} A post request promise
    */
   transfer(params) {

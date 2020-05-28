@@ -40,16 +40,22 @@ export default class Service {
   static model() {
     return null
   }
-  
+
   /**
-   * Returns a new model instance of the service.
+   * Returns the model of the service.
    *
    * @return {Object}  Model of service.
    */
-  static shape(data = {}) {
-    //
-    const model = this.model()
-    //
-    return new model(data)
+  static fetch() {
+    return null
+  }
+
+  /**
+   * Returns the model of the service.
+   *
+   * @return {Object}  Model of service.
+   */
+  static parametrize() {
+    return null
   }
 }
