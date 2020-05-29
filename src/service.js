@@ -92,7 +92,7 @@ export default class Service {
    * @param   {Function}  [params={}] - The parameters.
    * @return  {Promise}   { description_of_the_return_value }
    */
-  static fetch(params = {}) {
+  static fetch = (params = {}) => {
     return Promise.resolve(params).then(this.parametrize).then(this.getter)
   }
 
