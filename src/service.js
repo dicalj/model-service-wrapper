@@ -71,7 +71,7 @@ export default class Service {
    * @param   {Object}  params - The params.
    * @return  {Object}  model get params.
    */
-  static parametrize = (params = {}) => {
+  static parametrize(params = {}) {
     return {
       limit : params.limit,
       page  : params.page,
