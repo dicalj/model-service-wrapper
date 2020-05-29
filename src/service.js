@@ -28,16 +28,6 @@ export default class Service {
   }
 
   /**
-   * Set the service appends
-   *
-   * @param   {Array}   [appends=[]] - The appends.
-   * @return  {Object}  { description_of_the_return_value }.
-   */
-  static append(appends = []) {
-    this.appends = appends; return this;
-  }
-
-  /**
    * Creates a new instance of the service with same properties 
    * than original.
    *
@@ -66,17 +56,6 @@ export default class Service {
   static delete(model) {
     return model.delete()
   }
-
-  /**
-   * Set the service includes
-   *
-   * @param   {Array}   [includes=[]] - The includes.
-   * @return  {Object}  { description_of_the_return_value }.
-   */
-  static include(includes = []) {
-    this.includes = includes; return this;
-  }
-
   /**
    * Returns the model of the service.
    *
@@ -87,36 +66,6 @@ export default class Service {
   }
 
   /**
-   * Fetches the given parameters.
-   *
-   * @param   {Function}  [params={}] - The parameters.
-   * @return  {Promise}   { description_of_the_return_value }
-   */
-  static fetch = (params = {}) => {
-    return Promise.resolve(params).then(this.parametrize).then(this.getter)
-  }
-
-  /**
-   * Fetches the given parameters.
-   *
-   * @param   {Function}  [params={}] - The parameters.
-   * @return  {Promise}   { description_of_the_return_value }
-   */
-  static fetcher = () => (params = {}) => {
-    return Promise.resolve(params).then(this.fetch)
-  }
-
-  /**
-   * Get the given parameters.
-   *
-   * @param   {Function}  [params={}] - The parameters.
-   * @return  {Promise}   { description_of_the_return_value }
-   */
-  static getter(params = {}) {
-    return this.model().params(params).get()
-  }
-
-  /**
    * Parametrize the params argument to model param get.
    * 
    * @param   {Object}  params - The params.
@@ -124,18 +73,10 @@ export default class Service {
    */
   static parametrize = (params = {}) => {
     return {
-      // append  : this.parametrizeAppend(params),
-      // include : this.parametrizeInclude(params),
-      // limit   : this.parametrizeLimit(params),
-      // page    : this.parametrizePage(params),
-      // sort    : this.parametrizeSort(params),
-      // filter  : this.parametrizeFilter(params),
-      append  : this.appends.join(),
-      include : this.includes.join(),
-      limit   : params.limit,
-      page    : params.page,
-      sort    : params.sort,
-      filter  : params.filter,
+      limit : params.limit,
+      page  : params.page,
+      sort  : params.sort,
+      filter: params.filter,
     }
   }
 
@@ -144,13 +85,15 @@ export default class Service {
    * 
    * @return {Function} this fetch function.
    */
-  static toFetch = () => this.fetcher()
+  static fetcher = (Model) => (params) => {
+    return Model.params(this.parametrize(params)).get()
+  }
 
   /**
    * Returns a simple fetcher with the current
    */
   static toList() {
-    return this.toFetch()
+    return this.fetcher(this.model())
   }
 
   /**
