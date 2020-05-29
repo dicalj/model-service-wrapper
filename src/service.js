@@ -97,6 +97,16 @@ export default class Service {
   }
 
   /**
+   * Fetches the given parameters.
+   *
+   * @param   {Function}  [params={}] - The parameters.
+   * @return  {Promise}   { description_of_the_return_value }
+   */
+  static fetcher = () => (params = {}) => {
+    return Promise.resolve(params).then(this.fetch)
+  }
+
+  /**
    * Get the given parameters.
    *
    * @param   {Function}  [params={}] - The parameters.
@@ -134,9 +144,7 @@ export default class Service {
    * 
    * @return {Function} this fetch function.
    */
-  static toFetch = () => {
-    return this.fetch
-  }
+  static toFetch = () => this.fetcher()
 
   /**
    * Returns a simple fetcher with the current
