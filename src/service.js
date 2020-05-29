@@ -92,10 +92,12 @@ export default class Service {
   }
 
   /**
-   * Returns a simple fetcher with the current
+   * Returns a list fetcher representation of service.
+   * 
+   * @returns {Function} the fetcher request.
    */
   static toList() {
-    return this.fetcher(this.model())
+    return this.fetcher(this.model().toList())
   }
 
   /**

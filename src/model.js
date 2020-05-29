@@ -286,6 +286,15 @@ export default class extends Model {
    * 
    * @returns {Object} Create representation of the object.
    */
+  static toList() {
+    return this.append().include()
+  }
+
+  /**
+   * Returns a create representation of the object.
+   * 
+   * @returns {Object} Create representation of the object.
+   */
   toUpdate() {
     return this.reduce([])
   }
