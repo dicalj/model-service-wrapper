@@ -85,8 +85,10 @@ export default class Service {
    * 
    * @return {Function} this fetch function.
    */
-  static fetcher = (Model) => (params) => {
-    return Model.params(this.parametrize(params)).get()
+  static fetcher(Model) {
+    return (params) => {
+      return Model.params(this.parametrize(params)).get()
+    }
   }
 
   /**
