@@ -92,7 +92,7 @@ export default class Service {
    * @param   {Function}  [params={}] - The parameters.
    * @return  {Promise}   { description_of_the_return_value }
    */
-  static fetch = (params = {}) => {
+  static fetch(params = {}) {
     return Promise.resolve(params).then(this.parametrize).then(this.getter)
   }
 
@@ -102,7 +102,7 @@ export default class Service {
    * @param   {Function}  [params={}] - The parameters.
    * @return  {Promise}   { description_of_the_return_value }
    */
-  static getter = (params = {}) => {
+  static getter(params = {}) {
     return this.model().params(params).get()
   }
 
@@ -112,7 +112,7 @@ export default class Service {
    * @param   {Object}  params - The params.
    * @return  {Object}  model get params.
    */
-  static parametrize = (params = {}) => {
+  static parametrize(params = {}) {
     return {
       // append  : this.parametrizeAppend(params),
       // include : this.parametrizeInclude(params),
