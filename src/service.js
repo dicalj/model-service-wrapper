@@ -97,15 +97,6 @@ export default class Service {
   }
 
   /**
-   * Returns a invocker to fetch function.
-   * 
-   * @return {Function} this fetch function.
-   */
-  static fetcher = () => {
-    return this.fetch
-  }
-
-  /**
    * Get the given parameters.
    *
    * @param   {Function}  [params={}] - The parameters.
@@ -123,9 +114,15 @@ export default class Service {
    */
   static parametrize = (params = {}) => {
     return {
+      // append  : this.parametrizeAppend(params),
+      // include : this.parametrizeInclude(params),
+      // limit   : this.parametrizeLimit(params),
+      // page    : this.parametrizePage(params),
+      // sort    : this.parametrizeSort(params),
+      // filter  : this.parametrizeFilter(params),
       append  : this.appends.join(),
       include : this.includes.join(),
-      limit   : params.limit, 
+      limit   : params.limit,
       page    : params.page,
       sort    : params.sort,
       filter  : params.filter,
@@ -133,10 +130,19 @@ export default class Service {
   }
 
   /**
+   * Returns a invocker to fetch function.
+   * 
+   * @return {Function} this fetch function.
+   */
+  static toFetch = () => {
+    return this.fetch
+  }
+
+  /**
    * Returns a simple fetcher with the current
    */
   static toList() {
-    return this.model().append().include().params(params).get()
+    return this.toFetch()
   }
 
   /**
