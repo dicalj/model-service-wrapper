@@ -184,7 +184,7 @@ export default class extends Model {
    * @param   {Array}   [properties=[]]  The properties
    * @return  {Object}  { description_of_the_return_value }
    */
-  reduce(...properties) {
+  reduce(properties) {
 
     //
     let clone = this.clone()
