@@ -5,6 +5,10 @@
  */
 export default class Service {
 
+  //
+  static appends = []
+  static includes = []
+
   /**
    * Create and new object instance from the service prototype.
    *
@@ -21,6 +25,16 @@ export default class Service {
    */
   static _prototype() {
     return Object.getPrototypeOf(this)
+  }
+
+  /**
+   * Set the service appends
+   *
+   * @param   {Array}   [appends=[]] - The appends.
+   * @return  {Object}  { description_of_the_return_value }.
+   */
+  static append(appends = []) {
+    this.appends = appends; return this;
   }
 
   /**
@@ -54,6 +68,16 @@ export default class Service {
   }
 
   /**
+   * Set the service includes
+   *
+   * @param   {Array}   [includes=[]] - The includes.
+   * @return  {Object}  { description_of_the_return_value }.
+   */
+  static include(includes = []) {
+    this.includes = includes; return this;
+  }
+
+  /**
    * Returns the model of the service.
    *
    * @return {Object}  Model of service.
@@ -68,15 +92,17 @@ export default class Service {
    * @param   {Function}  [params={}] - The parameters.
    * @return  {Promise}   { description_of_the_return_value }
    */
-  static fetch(params = {}) {
-    return Promise.resolve(params).then(this.parametrize).then(this.get)
+  static fetch = (params = {}) => {
+    return Promise.resolve(params).then(this.parametrize).then(this.getter)
   }
 
   /**
-   * { item_description }
+   * Returns a invocker to fetch function.
+   * 
+   * @return {Function} this fetch function.
    */
-  static fetcher() {
-    return (params) => this.fetch(params)
+  static fetcher = () => {
+    return this.fetch
   }
 
   /**
@@ -85,7 +111,7 @@ export default class Service {
    * @param   {Function}  [params={}] - The parameters.
    * @return  {Promise}   { description_of_the_return_value }
    */
-  static get(params = {}) {
+  static getter = (params = {}) => {
     return this.model().params(params).get()
   }
 
@@ -95,10 +121,10 @@ export default class Service {
    * @param   {Object}  params - The params.
    * @return  {Object}  model get params.
    */
-  static parametrize(params = {}) {
+  static parametrize = (params = {}) => {
     return {
-      append  : params.append,
-      include : params.include,
+      append  : this.appends.join(),
+      include : this.includes.join(),
       limit   : params.limit, 
       page    : params.page,
       sort    : params.sort,
