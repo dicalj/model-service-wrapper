@@ -122,7 +122,7 @@ export default class Service {
    * @param   {Object}  params - The params.
    * @return  {Object}  model get params.
    */
-  static parametrize(params = {}) {
+  static parametrize = (params = {}) => {
     return {
       // append  : this.parametrizeAppend(params),
       // include : this.parametrizeInclude(params),
