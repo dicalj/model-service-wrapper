@@ -111,6 +111,13 @@ export default class extends Model {
   }
 
   /**
+   * 
+   */
+  static from(data) {
+    return new this(data)
+  }
+
+  /**
    * Get the full url for the current model
    *
    * @return     {Array}  { description_of_the_return_value }

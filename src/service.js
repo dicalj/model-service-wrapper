@@ -92,6 +92,13 @@ export default class Service {
   }
 
   /**
+   * 
+   */
+  static shape(data) {
+    return this.model().from(data)
+  }
+
+  /**
    * Returns a list fetcher representation of service.
    * 
    * @returns {Function} the fetcher request.
