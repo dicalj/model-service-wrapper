@@ -1,4 +1,5 @@
 // required modules
+import Case from 'case'
 import { Model } from 'vue-api-query'
 
 /**
@@ -239,6 +240,27 @@ export default class extends Model {
    */
   request(config) {
     return this.$http.request(config)
+  }
+
+  /**
+   * Returns a clone representation of the object.
+   *
+   * @param   {String}  caseName - The case name.
+   * @return  {Object}  The modify object.
+   */
+  toCase(caseName) {
+
+    // required data
+    const thisClone = this.clone()
+    const thisCaseName = Case[caseName]
+
+    // modify clone keys
+    Object.keys(thisClone).forEach(key => {
+      thisClone[thisCaseName(key)] = thisClone[key]; delete thisClone[key];
+    })
+
+    // return modify result
+    return thisClone
   }
 
   /**

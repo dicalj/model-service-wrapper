@@ -15,5 +15,8 @@
   },
   "scripts": {
     "build": "babel src -d dist"
+  },
+  "dependencies": {
+    "case": "^1.6.3"
   }
 }
