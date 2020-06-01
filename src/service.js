@@ -87,7 +87,7 @@ export default class Service {
    */
   static fetcher(Model) {
     return (params) => {
-      console.log({ Model })
+      // console.log({ Model })
       return Model.params(this.parametrize(params)).get()
     }
   }
@@ -105,7 +105,7 @@ export default class Service {
    * @returns {Function} the fetcher request.
    */
   static toList() {
-    return this.fetcher(this.model().toList())
+    return (params) => this.model().params(this.parametrize(params)).get()
   }
 
   /**
