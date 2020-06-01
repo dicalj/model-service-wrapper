@@ -81,12 +81,13 @@ export default class Service {
   }
 
   /**
-   * Returns a invocker to fetch function.
+   * Returns a invoker to fetch function.
    * 
    * @return {Function} this fetch function.
    */
   static fetcher(Model) {
     return (params) => {
+      console.log({ Model })
       return Model.params(this.parametrize(params)).get()
     }
   }
