@@ -284,10 +284,10 @@ export default class extends Model {
   /**
    * Return a FormData with specific properties.
    * 
-   * @param   {String}    properties - properties names.
+   * @param   {Array}     properties - properties names.
    * @returns {FormData}  a FormData representation .
    */
-  toFormData(...props) {
+  toFormData(props) {
 
     // the formData
     var formData = new FormData()
