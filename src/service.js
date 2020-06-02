@@ -98,7 +98,7 @@ export default class Service {
   static from(data) {
     return () => ({
       data: data,
-      total: data.length,
+      // total: data.length,
     })
   }
 
