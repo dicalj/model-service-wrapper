@@ -85,7 +85,23 @@ export default class Service {
    * 
    * @return {Function} this fetch function.
    */
-  static fetcher = (model) => (params) => model.params(this.parametrize(params)).get()
+  static fetcher (payload) {
+    return (params) => {
+
+      //
+      const tAppends  = payload.appends ? payload.appends : []
+      const tIncludes = payload.includes ? payload.includes : []
+      const tParams   = this.parametrize(params)
+
+      //
+      return this
+        .model()
+        .append(tAppends)
+        .include(tIncludes)
+        .params(tParams)
+        .get()
+    }
+  }
 
   /**
    * 
