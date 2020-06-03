@@ -92,14 +92,20 @@ export default class Service {
       const tAppends  = payload.appends ? payload.appends : []
       const tFilters  = payload.filters ? payload.filters : {}
       const tIncludes = payload.includes ? payload.includes : []
-      const tParams   = this.parametrize(params)
+      const tParams   = this.parametrize({
+        ...params,
+        filter: {
+          ...params.filter ? params.filter : {},
+          ...tFilters,
+        }
+      })
 
       //
       return this
         .model()
         .append(tAppends)
         .include(tIncludes)
-        .params({ ...tParams, ...tFilters })
+        .params(tParams)
         .get()
     }
   }
