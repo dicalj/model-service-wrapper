@@ -90,6 +90,7 @@ export default class Service {
 
       //
       const tAppends  = payload.appends ? payload.appends : []
+      const tFilters  = payload.filters ? payload.filters : {}
       const tIncludes = payload.includes ? payload.includes : []
       const tParams   = this.parametrize(params)
 
@@ -98,7 +99,7 @@ export default class Service {
         .model()
         .append(tAppends)
         .include(tIncludes)
-        .params(tParams)
+        .params({ ...tParams, ...tFilters })
         .get()
     }
   }
