@@ -240,6 +240,14 @@ export default class extends Model {
    */
   request(config) {
     return this.$http.request(config)
+  }  
+
+  /**
+   * 
+   */
+  setPrimaryKey = (key) => {
+    this[this.primaryKey()] = key
+    return this
   }
 
   /**
