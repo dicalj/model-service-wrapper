@@ -123,7 +123,7 @@ export default class Service {
    * @param   {Object} opts - The options of a new service model instance.
    * @returns {Object}        The new initial service model instance.
    */
-  static initial(opts) {
+  static initial(opts = {}) {
     return this.shape(this.initialize(opts))
   }
 
@@ -133,7 +133,7 @@ export default class Service {
    * @param   {Object} opts - The options of a new service model instance.
    * @returns {Object}        The initial data.
    */
-  static initialize(opts) {
+  static initialize(opts = {}) {
     return {
       ...opts,
     }
