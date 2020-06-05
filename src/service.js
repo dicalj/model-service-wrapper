@@ -5,10 +5,6 @@
  */
 export default class Service {
 
-  //
-  static appends = []
-  static includes = []
-
   /**
    * Create and new object instance from the service prototype.
    *
@@ -41,7 +37,7 @@ export default class Service {
    * Send a post request to create a active model record.
    * 
    * @param   {Object}  model - the active model record.
-   * @returns {Promise} the create request promise.
+   * @returns {Promise}         the create request promise.
    */
   static create(model) {
     return model.toCreate().save()
@@ -51,7 +47,7 @@ export default class Service {
    * Send a delete request to remove a active model record.
    * 
    * @param   {Object}  model - the active model record.
-   * @returns {Promise} the remove request promise.
+   * @returns {Promise}         the remove request promise.
    */
   static delete(model) {
     return model.delete()
@@ -69,7 +65,7 @@ export default class Service {
    * Parametrize the params argument to model param get.
    * 
    * @param   {Object}  params - The params.
-   * @return  {Object}  model get params.
+   * @return  {Object}           The model get params.
    */
   static parametrize(params = {}) {
     return {
@@ -121,9 +117,36 @@ export default class Service {
   }
 
   /**
+   * Return a new initial service model instance with the options
+   * provided.
    * 
+   * @param   {Object} opts - The options of a new service model instance.
+   * @returns {Object}        The new initial service model instance.
    */
-  static shape(data) {
+  static initial(opts) {
+    return this.shape(this.initialize(opts))
+  }
+
+  /**
+   * Return a initial data with the options provided.
+   * 
+   * @param   {Object} opts - The options of a new service model instance.
+   * @returns {Object}        The initial data.
+   */
+  static initialize(opts) {
+    return {
+      ...opts,
+    }
+  }
+
+  /**
+   * Return a new service model instance with the initial data
+   * provided.
+   * 
+   * @param   {Object} data - The initial data of new service model instance.
+   * @returns {Object}        The new service model instance.
+   */
+  static shape(data = {}) {
     return this.model().from(data)
   }
 
@@ -140,7 +163,7 @@ export default class Service {
    * Send a put request to update a active model record.
    * 
    * @param   {Object}  model - the active model record.
-   * @returns {Promise} the update request promise.
+   * @returns {Promise}         the update request promise.
    */
   static update(model) {
     return model.toUpdate().save()
