@@ -11,10 +11,13 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.10.0",
     "babel-preset-minify": "^0.5.1",
+    "jsdoc": "^3.6.4",
+    "tidy-jsdoc": "^1.4.0",
     "vue-api-query": "^1.5.2"
   },
   "scripts": {
-    "build": "babel src -d dist"
+    "build": "babel src -d dist",
+    "docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "dependencies": {
     "case": "^1.6.3"

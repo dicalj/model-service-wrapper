@@ -1,13 +1,13 @@
 // required modules
 import Case from 'case'
-import { Model } from 'vue-api-query'
+import { Model as BaseModel } from 'vue-api-query'
 
 /**
  * This class describes an api model.
- *
- * @class Model (name)
+ * 
+ * @class
  */
-export default class extends Model {
+class Model extends BaseModel {
 
   /**
    * Create and new object instance from the model prototype.
@@ -130,8 +130,8 @@ export default class extends Model {
   /**
    * Gets the property.
    *
-   * @param      {<type>}  path    The path
-   * @return     {<type>}  The property.
+   * @param      {*}  path    The path
+   * @return     {*}  The property.
    */
   getProperty(path, prevent, apply = v => v) {
     return apply(path.split('.').reduce(this.reduceHasProperty, this) || prevent)
@@ -155,7 +155,7 @@ export default class extends Model {
 
   /**
    * { function_description }
-   * @return     {<type>}  { description_of_the_return_value }
+   * @return     {*}  { description_of_the_return_value }
    */
   patch() {
     return  this.request({
@@ -169,7 +169,7 @@ export default class extends Model {
    * { function_description }
    *
    * @param      {string}  [path='pdf']  The path
-   * @return     {<type>}  { description_of_the_return_value }
+   * @return     {*}  { description_of_the_return_value }
    */
   pdf(path = 'pdf') {
     return this.request({
@@ -210,9 +210,9 @@ export default class extends Model {
   /**
    * Reduces the has property.
    *
-   * @param      {<type>}  parent    The parent
-   * @param      {<type>}  property  The property
-   * @return     {<type>}  { description_of_the_return_value }
+   * @param      {*}  parent    The parent
+   * @param      {*}  property  The property
+   * @return     {*}  { description_of_the_return_value }
    */
   reduceHasProperty(parent, property) {
     return typeof parent === "object" && parent !== null ? parent[property] : undefined
@@ -221,8 +221,8 @@ export default class extends Model {
   /**
    * { function_description }
    *
-   * @param      {<type>}  data    The data
-   * @return     {<type>}  { description_of_the_return_value }
+   * @param      {*}  data    The data
+   * @return     {*}  { description_of_the_return_value }
    */
   replace(data) {
     return this.$http.request({
@@ -351,3 +351,6 @@ export default class extends Model {
     })
   }
 }
+
+//
+export default Model

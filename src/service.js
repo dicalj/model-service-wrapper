@@ -1,9 +1,9 @@
 /**
  * This class describes a service.
  *
- * @class Service (name)
+ * @class
  */
-export default class Service {
+class Service {
 
   /**
    * Create and new object instance from the service prototype.
@@ -162,10 +162,13 @@ export default class Service {
   /**
    * Send a put request to update a active model record.
    * 
-   * @param   {Object}  model - the active model record.
-   * @returns {Promise}         the update request promise.
+   * @param   {object}          model - the active model record.
+   * @returns {Promise<object>}         the update request promise.
    */
   static update(model) {
     return model.toUpdate().save()
   }
 }
+
+//
+export default Service
