@@ -45,7 +45,7 @@ class Model extends BaseModel {
    */
   blob({ url, data }) {
     return this.request({
-      requestType: 'blob',
+      responseType: 'blob',
       method: 'get',
       url,
       data,
