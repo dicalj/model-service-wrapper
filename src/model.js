@@ -78,11 +78,11 @@ class Model extends BaseModel {
   /**
    *
    */
-  file (filename, fileExtend) {
+  file (filename, fileExtend, prop = 'data') {
     return function(res) {
       //
       var fileLink = document.createElement('a')
-      var fileURL = URL.createObjectURL(res.data)
+      var fileURL = URL.createObjectURL(res[prop])
 
       //
       fileLink.href = fileURL
