@@ -182,8 +182,17 @@ class Model extends BaseModel {
   /**
    * 
    */
-  prop = (...args) => {
-    return this.getProperty(...args)
+  prop(path = '', prevent = '', apply = v => v) {
+
+    // required data
+    const paths     = path.split('.')
+    // const value     = paths.reduce(this.hunt, this)
+    const value     = paths.reduce(this.reduceHasProperty, this)
+    const result    = value ? value : prevent
+    const response  = apply(result)
+
+    // result
+    return response
   }
 
   /**
