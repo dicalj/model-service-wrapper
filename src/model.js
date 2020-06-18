@@ -182,7 +182,7 @@ class Model extends BaseModel {
   /**
    * 
    */
-  prop(...args) {
+  prop = (...args) => {
     return this.getProperty(...args)
   }
 
