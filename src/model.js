@@ -180,6 +180,11 @@ class Model extends BaseModel {
   }
 
   /**
+   * 
+   */
+  prop = this.getProperty
+
+  /**
    *
    */
   primaryValue(){
