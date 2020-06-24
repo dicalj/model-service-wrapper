@@ -256,7 +256,14 @@ class Model extends BaseModel {
    */
   request(config) {
     return this.$http.request(config)
-  }  
+  }
+
+  /**
+   * 
+   */
+  reset() {
+    return this
+  }
 
   /**
    * 
