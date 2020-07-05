@@ -9,6 +9,74 @@
 </dd>
 </dl>
 
+## Functions
+
+<dl>
+<dt><a href="#_create_from">_create_from()</a> ⇒ <code>Object</code></dt>
+<dd><p>Create and new object instance from the model prototype.</p>
+</dd>
+<dt><a href="#_prototype">_prototype()</a> ⇒ <code>Object</code></dt>
+<dd><p>Returns the model prototype.</p>
+</dd>
+<dt><a href="#attach">attach([data])</a> ⇒ <code>promise</code></dt>
+<dd><p>Send a post request.</p>
+</dd>
+<dt><a href="#baseUrl">baseUrl()</a> ⇒ <code>string</code></dt>
+<dd><p>The current base URL of model instance.</p>
+</dd>
+<dt><a href="#blob">blob([data])</a> ⇒ <code>promise</code></dt>
+<dd><p>Send a get request with blob type.</p>
+</dd>
+<dt><a href="#clone">clone()</a> ⇒ <code>object</code></dt>
+<dd><p>Creates a new instance of the model with same properties than 
+original.</p>
+</dd>
+<dt><a href="#delete">delete([data])</a> ⇒ <code>promise</code></dt>
+<dd><p>Send a delete request.</p>
+</dd>
+<dt><a href="#form">form()</a></dt>
+<dd></dd>
+<dt><a href="#from">from()</a></dt>
+<dd></dd>
+<dt><a href="#fullUrl">fullUrl()</a> ⇒ <code>string</code></dt>
+<dd><p>The current full URL of model instance.</p>
+</dd>
+<dt><a href="#get">get([data])</a> ⇒ <code>promise</code></dt>
+<dd><p>Send a get request.</p>
+</dd>
+<dt><a href="#hunt">hunt(parent, property)</a> ⇒ <code>*</code></dt>
+<dd><p>Reduces the has property.</p>
+</dd>
+<dt><a href="#identifier">identifier()</a></dt>
+<dd></dd>
+<dt><a href="#identity">identity()</a></dt>
+<dd></dd>
+<dt><a href="#many">many()</a></dt>
+<dd></dd>
+<dt><a href="#one">one()</a></dt>
+<dd></dd>
+<dt><a href="#prop">prop()</a></dt>
+<dd></dd>
+<dt><a href="#reduce">reduce([properties])</a> ⇒ <code>object</code></dt>
+<dd><p>Reduces to the specific array of properties.</p>
+</dd>
+<dt><a href="#replace">replace([data])</a> ⇒ <code>promise</code></dt>
+<dd><p>Send a patch request.</p>
+</dd>
+<dt><a href="#resource">resource()</a></dt>
+<dd></dd>
+<dt><a href="#save">save([data])</a> ⇒ <code>promise</code></dt>
+<dd><p>Send a post request.</p>
+</dd>
+<dt><a href="#sync">sync([data])</a> ⇒ <code>promise</code></dt>
+<dd><p>Send a put request.</p>
+</dd>
+<dt><a href="#toCreate">toCreate()</a></dt>
+<dd></dd>
+<dt><a href="#toUpdate">toUpdate()</a></dt>
+<dd></dd>
+</dl>
+
 <a name="Model"></a>
 
 ## Model
@@ -464,3 +532,187 @@ Send a put request to update a active model record.
 | --- | --- | --- |
 | model | <code>object</code> | the active model record. |
 
+<a name="_create_from"></a>
+
+## \_create\_from() ⇒ <code>Object</code>
+Create and new object instance from the model prototype.
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - a new model instance.  
+<a name="_prototype"></a>
+
+## \_prototype() ⇒ <code>Object</code>
+Returns the model prototype.
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - a prototype definition.  
+<a name="attach"></a>
+
+## attach([data]) ⇒ <code>promise</code>
+Send a post request.
+
+**Kind**: global function  
+**Returns**: <code>promise</code> - A request promise.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [data] | <code>object</code> | <code>{}</code> | The request payload. |
+
+<a name="baseUrl"></a>
+
+## baseUrl() ⇒ <code>string</code>
+The current base URL of model instance.
+
+**Kind**: global function  
+**Returns**: <code>string</code> - The base URL instance.  
+<a name="blob"></a>
+
+## blob([data]) ⇒ <code>promise</code>
+Send a get request with blob type.
+
+**Kind**: global function  
+**Returns**: <code>promise</code> - A request promise.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [data] | <code>object</code> | <code>{}</code> | The request payload. |
+
+<a name="clone"></a>
+
+## clone() ⇒ <code>object</code>
+Creates a new instance of the model with same properties than original.
+
+**Kind**: global function  
+**Returns**: <code>object</code> - Copy of this model.  
+<a name="delete"></a>
+
+## delete([data]) ⇒ <code>promise</code>
+Send a delete request.
+
+**Kind**: global function  
+**Returns**: <code>promise</code> - A request promise.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [data] | <code>object</code> | <code>{}</code> | The request payload. |
+
+<a name="form"></a>
+
+## form()
+**Kind**: global function  
+<a name="from"></a>
+
+## from()
+**Kind**: global function  
+<a name="fullUrl"></a>
+
+## fullUrl() ⇒ <code>string</code>
+The current full URL of model instance.
+
+**Kind**: global function  
+**Returns**: <code>string</code> - The URL instance.  
+<a name="get"></a>
+
+## get([data]) ⇒ <code>promise</code>
+Send a get request.
+
+**Kind**: global function  
+**Returns**: <code>promise</code> - A request promise.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [data] | <code>object</code> | <code>{}</code> | The request payload. |
+
+<a name="hunt"></a>
+
+## hunt(parent, property) ⇒ <code>\*</code>
+Reduces the has property.
+
+**Kind**: global function  
+**Returns**: <code>\*</code> - { description_of_the_return_value }  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| parent | <code>\*</code> | The parent |
+| property | <code>\*</code> | The property |
+
+<a name="identifier"></a>
+
+## identifier()
+**Kind**: global function  
+<a name="identity"></a>
+
+## identity()
+**Kind**: global function  
+<a name="many"></a>
+
+## many()
+**Kind**: global function  
+<a name="one"></a>
+
+## one()
+**Kind**: global function  
+<a name="prop"></a>
+
+## prop()
+**Kind**: global function  
+<a name="reduce"></a>
+
+## reduce([properties]) ⇒ <code>object</code>
+Reduces to the specific array of properties.
+
+**Kind**: global function  
+**Returns**: <code>object</code> - { description_of_the_return_value }  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [properties] | <code>array</code> | <code>[]</code> | The properties |
+
+<a name="replace"></a>
+
+## replace([data]) ⇒ <code>promise</code>
+Send a patch request.
+
+**Kind**: global function  
+**Returns**: <code>promise</code> - A request promise.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [data] | <code>object</code> | <code>{}</code> | The request payload. |
+
+<a name="resource"></a>
+
+## resource()
+**Kind**: global function  
+<a name="save"></a>
+
+## save([data]) ⇒ <code>promise</code>
+Send a post request.
+
+**Kind**: global function  
+**Returns**: <code>promise</code> - A request promise.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [data] | <code>object</code> | <code>{}</code> | The request payload. |
+
+<a name="sync"></a>
+
+## sync([data]) ⇒ <code>promise</code>
+Send a put request.
+
+**Kind**: global function  
+**Returns**: <code>promise</code> - A request promise.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [data] | <code>object</code> | <code>{}</code> | The request payload. |
+
+<a name="toCreate"></a>
+
+## toCreate()
+**Kind**: global function  
+<a name="toUpdate"></a>
+
+## toUpdate()
+**Kind**: global function  
