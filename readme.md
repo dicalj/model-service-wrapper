@@ -1,4 +1,4 @@
-# model-service-wrapper
+# Model service wrapper
 
 This is an helper lib with default class to manipulate models and services definitions based on vue-api-query.
 
@@ -18,4 +18,4 @@ PRs accepted.
 
 ## License
 
-MIT © dicaljs
+© dicaljs
