@@ -84,8 +84,8 @@ class Model extends BaseModel {
       // read content-disposition filename
       var fileDisposition = res.request ? res.request.getResponseHeader('Content-Disposition') : ''
       var fileDispositionSplit = fileDisposition.split("filename=")
-      var fileDispositionString = fileDispositionSplit.length > 1 ? fileDispositionSplit[1] : ''
-      var fileDispositionStringSplit = fileDispositionString.split(';')
+      var fileDispositionString = fileDispositionSplit.length > 1 ? fileDispositionSplit[1] : null
+      var fileDispositionStringSplit = fileDispositionString ? fileDispositionString.split(';') : []
       var fileContentName = fileDispositionStringSplit[0] || null
       
       // set file blob params
