@@ -93,6 +93,9 @@ class Model extends BaseModel {
       var fileLink = document.createElement('a')
       var fileURL = URL.createObjectURL(res[prop])
 
+      // debug
+      console.log({ fileName, fileLink, fileURL })
+
       // return blob file
       fileLink.href = fileURL
       fileLink.download = fileName
