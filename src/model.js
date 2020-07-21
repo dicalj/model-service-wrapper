@@ -81,15 +81,21 @@ class Model extends BaseModel {
   file (fileDefaultName, fileExtend, prop = 'data') {
     return function(res) {
 
-      //
-      var fileContentName = res.request ? res.request.getResponseHeader('Content-Disposition') : null
-      var fileName = fileContentName || fileDefaultName
+      // read content-disposition filename
+      var fileDisposition = res.request ? res.request.getResponseHeader('Content-Disposition') : ''
+      var fileDispositionSplit = fileDisposition.split("filename=")
+      var fileDispositionString = fileDispositionSplit.length > 1 ? fileDispositionSplit[1] : ''
+      var fileDispositionStringSplit = fileDispositionString.split(';')
+      var fileContentName = fileDispositionStringSplit[0] || null
+      
+      // set file blob params
+      var fileName = fileContentName || fileDefaultName.concat('.').concat(fileExtend)
       var fileLink = document.createElement('a')
       var fileURL = URL.createObjectURL(res[prop])
 
-      //
+      // return blob file
       fileLink.href = fileURL
-      fileLink.download = fileName.concat('.').concat(fileExtend)
+      fileLink.download = fileName
       fileLink.click()
     }
   }
