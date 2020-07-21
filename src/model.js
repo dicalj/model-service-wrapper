@@ -78,15 +78,18 @@ class Model extends BaseModel {
   /**
    *
    */
-  file (filename, fileExtend, prop = 'data') {
+  file (fileDefaultName, fileExtend, prop = 'data') {
     return function(res) {
+
       //
+      var fileContentName = res.request ? res.request.getResponseHeader('Content-Disposition') : null
+      var fileName = fileContentName || fileDefaultName
       var fileLink = document.createElement('a')
       var fileURL = URL.createObjectURL(res[prop])
 
       //
       fileLink.href = fileURL
-      fileLink.download = filename.concat('.').concat(fileExtend)
+      fileLink.download = fileName.concat('.').concat(fileExtend)
       fileLink.click()
     }
   }

@@ -8,7 +8,7 @@ export default class Model {
    * 
    */
   constructor(data) {
-    super()
+    super(data)
     Object.assign(this, ...attributes)
   }
 
